@@ -48,6 +48,11 @@ set colorcolumn=80
 
 " clipboard
 set clipboard=unnamed,unnamedplus
+augroup wl-clipboard
+  autocmd!
+  autocmd FocusLost * :call system('wl-copy --trim-newline', @+)
+  autocmd FocusGained * :let @+ = system('wl-paste -n')
+augroup END
 
 " ALE settings 
 let g:ale_sign_error = '>>'
