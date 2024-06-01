@@ -1,4 +1,4 @@
-set bell-style visible
+set bell-style none
 set editing-mode vi
 set expand-tilde on
 

@@ -7,7 +7,30 @@ esac
 # utils
 _have() { type "$1" &>/dev/null; }
 
+clone() {
+	local repo="$1" user
+	local repo="${repo#https://github.com/}"
+	local repo="${repo#git@github.com:}"
+	if [[ $repo =~ / ]]; then
+		user="${repo%%/*}"
+	else
+		user="$GITUSER"
+		[[ -z "$user" ]] && user="$USER"
+	fi
+	local name="${repo##*/}"
+	local userd="$REPOS/github.com/$user"
+	local path="$userd/$name"
+	[[ -d "$path" ]] && cd "$path" && return
+	mkdir -p "$userd"
+	cd "$userd"
+	echo gh repo clone "$user/$name" -- --recurse-submodule
+	gh repo clone "$user/$name" -- --recurse-submodule
+	cd "$name"
+} && export -f clone
+
 # env
+set -o vi
+
 export LANG=en_US.UTF-8 
 export USER="${USER:-$(whoami)}"
 export GITUSER="$USER"
@@ -16,13 +39,14 @@ export REPOS="$HOME/Repos"
 export GH_REPOS="$HOME/Repos/github.com/antgray"
 export EDITOR=vim
 export SUDO_EDITOR=vim
+export SYSTEMD_EDITOR=vim
 export VISUAL=vim
 export LC_COLLATE=C
 export LESS="-RXF --use-color -Dd+b\$Du+g"
 
 # XDG
 export XDG_CACHE_HOME=~/.local/var/cache
-export XDG_CONFIG_DIR=~/.local/etc
+export XDG_CONFIG_HOME=~/.local/etc
 export XDG_DATA_HOME=~/.local/share
 export XDG_STATE_HOME=~/.local/var/lib
 export XDG_LIB_HOME=~/.local/lib
@@ -49,8 +73,7 @@ shopt -s extglob
 export HISTCONTROL=ignoreboth
 export HISTSIZE=5000
 export HISTFILESIZE=10000
-
-set -o vi
+export PROMPT_COMMAND="history -n;history -w;history -c;history -r;$PROMPT_COMMAND"
 shopt -s histappend
 
 # prompt
@@ -88,3 +111,4 @@ _have ansible-playbook && . <(register-python-argcomplete ansible-playbook)
 _have ansible-pull && . <(register-python-argcomplete ansible-pull)
 _have ansible-vault && . <(register-python-argcomplete ansible-vault)
 
+bind -f ~/.inputrc
