@@ -4,7 +4,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term foot
+set $term alacritty
 
 # vars - windows
 set {
@@ -126,7 +126,7 @@ for_window [app_id="blueman-manager"] {
 }
 
 for_window [app_id="yubico-authenticator"] {
-    $popup
+    $float
     resize set width 15 ppt height 60 ppt
 }
 
