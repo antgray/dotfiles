@@ -7,6 +7,7 @@ esac
 # utils
 _have() { type "$1" &>/dev/null; }
 
+# format: https://github.com/user/repo (no .git ext)
 clone() {
 	local repo="$1" user
 	local repo="${repo#https://github.com/}"
@@ -57,6 +58,7 @@ export HISTFILE="$XDG_STATE_HOME"/bash/history
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+export BEETSDIR="$XDG_CONFIG_HOME"/beets
 
 #cdpath
 export CDPATH=".:$GH_REPOS:$REPOS:$HOME"
