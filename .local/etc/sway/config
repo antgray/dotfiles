@@ -84,7 +84,7 @@ input type:keyboard {
 # key bindings
     bindsym $mod+Return exec $term
     bindsym $mod+Shift+c kill
-    bindsym $mod+d exec 'wofi --show run'
+    bindsym $mod+d exec 'wofi --show drun'
     floating_modifier $mod normal
     bindsym $mod+Shift+r reload
     bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -194,7 +194,7 @@ client.background       #F8F8F2
 bar swaybar_command waybar
 
 # exec
-exec "random-swaybg &"
+exec_always "random-swaybg &"
 exec_always autotiling
 include /etc/sway/config.d/*
 

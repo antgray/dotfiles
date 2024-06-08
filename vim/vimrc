@@ -1,12 +1,19 @@
-if v:version < 802
-    packadd! dracula
-endif
-syntax enable
-colorscheme dracula
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
-"user recommended from defaults.vim
-unlet! skip_defaults_vim
-source $VIMRUNTIME/defaults.vim
+" Plugin directory is optional
+call plug#begin()
+
+" Declare the list of plugins.
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'dense-analysis/ale'
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
+colorscheme dracula
 
 set encoding=utf-8
 set noswapfile
@@ -19,11 +26,12 @@ set rnu
 set expandtab           " use spaces for indentation instead of tab charactes
 set softtabstop=2       " number of spaces for each <Tab> keypress
 set shiftwidth=2        " number of spaces for auto-indentation
-set shiftround          
+set shiftround
 
 set textwidth=79
-
 set colorcolumn=80
+
+let g:indentLine_char = '⦙'
 
 " clipboard
 set clipboard=unnamed,unnamedplus
@@ -33,13 +41,25 @@ augroup wl-clipboard
   autocmd FocusGained * :let @+ = system('wl-paste -n')
 augroup END
 
-" ALE settings 
+" ALE settings
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '>>'
 
 let g:ale_lint_on_text_change = 'never'
 let g:ale_lint_on_insert_leave = 'true'
-let g:ale_linters = {'bash': ['shellcheck'],}
+let g:ale_linters = {'bash': ['shellcheck']}
+let g:ale_linters = {'yaml': ['yamllint']}
+
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+let g:ale_lint_on_text_changed = 'never'
+
+let g:ale_fix_on_save = 1
+let b:ale_fixers = {'yaml': ['prettier', 'trim_whitespace', 'remove_trailing_lines']}
+
+" YAML
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Remaps
 imap jj <ESC>

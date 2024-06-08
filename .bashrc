@@ -101,7 +101,7 @@ if [ -f "$HOME/.bash_aliases" ]; then
 		source "$HOME/.bash_aliases"
 fi
 
-eval "$(beet completion)"
+# eval "$(beet completion)"
 
 _have ansible && . <(register-python-argcomplete ansible)
 _have ansible-config && . <(register-python-argcomplete ansible-config)
