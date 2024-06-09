@@ -4,25 +4,25 @@
         "layer": "top",
         "position": "top",
         "height": 30,
-        "modules-right": ["battery#bat1", "battery#bat2", "memory", "pulseaudio", "backlight", "clock"],
+        "modules-right": [
+          "network#disconnected", 
+          "network#vpn", 
+          "network#ethernet", 
+          "network#wifi", 
+          "battery", 
+          "memory", 
+          "pulseaudio", 
+          "backlight", 
+          "clock"
+         ],
         "modules-left": ["sway/workspaces"],
-        "sway/window": {
-            "format": "{}  ",
-            "on-click": "swaymsg kill"
-        },
-        "idle_inhibitor": {
-            "format": "{icon}",
-            "format-icons": {
-                "activated": " ",
-                "deactivated": " "
-            }
-        },
         "clock": {
             "interval": 1,
             "format": "<b>{:%H:%M:%S}</b>",
             "format-alt": "{:%Y-%m-%d}",
-            "tooltip-format": "<big>{:%Y
-%B}</big>\n<tt><small>{calendar}</small></tt>"
+            "tooltip-format": 
+              "<big>{:%Y%B}</big>\n
+              <tt><small>{calendar}</small></tt>"
         },
         "memory": {
             "format": "  {}%",
@@ -34,11 +34,11 @@
             "on-scroll-down": "brightlight -pd 1",
             "on-scroll-up": "brightlight -pi 1",
             "format": " {icon} {percent}%",
-            "format-icons": [" ", " "],
+            "format-icons": [" ",""],
             "on-click": "wdisplays"
         },
-        "battery#bat1": {
-            "bat": "BAT0",
+        "battery": {
+            "bat": "BAT1",
             "adapter": "AC",
             "interval": 10,
             "full-at": 99,
@@ -60,46 +60,34 @@
             "format-wifi": "",
             "format-linked": " ",
             "format-disconnected": " ",
-            "on-click": "nm-connection-editor"
         },
         "network#ethernet": {
             "interface": "enp*",
-            "format-ethernet": "",
+            "format-ethernet": "",
             "format-wifi": "",
             "format-linked": "",
             "format-disconnected": "",
             "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-            "on-click": "nm-connection-editor"
         },
         "network#wifi": {
-            "interface": "wlp*",
+            "interface": "wl*",
             "format-ethernet": "",
-            "format-wifi": " {essid} ({signalStrength}%)",
+            "format-wifi": "  {essid} ({signalStrength}%)",
             "format-linked": "",
             "format-disconnected": "",
             "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-            "on-click": "nm-connection-editor"
         },
         "network#vpn": {
             "interface": "tun0",
             "format": " ",
             "format-disconnected": "",
             "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-            "on-click": "nm-connection-editor"
         },
         "pulseaudio": {
             "scroll-step": 1,
-            "format": " {icon} {volume}%{format_source}",
-            "format-bluetooth": " {icon} {volume}%{format_source}",
-            "format-bluetooth-muted": "  {icon}{format_source}",
-            "format-muted": "  {format_source}",
-            "format-source": "  {volume}%",
-            "format-source-muted": "  ",
+            "format": " {icon} {volume}%",
             "format-icons": {
                 "headphone": " ",
-                "phone": " ",
-                "portable": " ",
-                "car": " ",
                 "default": ["", "", " "]
             },
             "on-click": "pavucontrol"

@@ -139,6 +139,11 @@ for_window [app_id="firefox" title="^Extension:.*"] {
     resize set width 60 ppt height 60 ppt
 }
 
+for_window [app_id="virt-manager"] {
+    $float
+    resize set width 15 ppt height 60 ppt
+}
+  
 # workspaces
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
