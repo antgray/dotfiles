@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Check if sox is installed
+if ! command -v sox &> /dev/null; then
+    echo "sox is not installed. Please install sox before running this script."
+    exit 1
+fi
+
+# Loop through all flac files in the current directory
+for file in *.flac; do
+    # Get the track name without the file extension
+    track_name=$(basename -- "$file" .flac)
+
+    # Create a spectrogram for the flac file
+    sox "$file" -n spectrogram -o "$track_name.png"
+    
+    echo "Spectrogram created for $file"
+done
+
+read -p "Do you want to view all .png files in this directory? (yes/no): " answer && [[ $answer == "yes" ]] && swayimg *.png
+
+echo "All spectrograms created successfully."
+

@@ -18,4 +18,4 @@ alias dot='/usr/bin/git --git-dir=/home/ag/.dotfiles/ --work-tree=/home/ag'
 alias sshfix='ssh-keygen -f "/home/ag/.ssh/known_hosts" -R'
 alias chmox='chmod +x'
 alias c='clear'
-
+alias scp='scp -O'

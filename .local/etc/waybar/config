@@ -33,7 +33,7 @@
             "interval": 1,
             "on-scroll-down": "brightlight -pd 1",
             "on-scroll-up": "brightlight -pi 1",
-            "format": " {icon} {percent}%",
+            "format": " {icon} {percent}% ",
             "format-icons": [" ",""],
             "on-click": "wdisplays"
         },
@@ -48,8 +48,8 @@
                 "empty": 5
             },
             "format": " {icon} {capacity}%",
-            "format-charging": "  {capacity}%",
-            "format-plugged": "  {capacity}%",
+            "format-charging": " {capacity}%",
+            "format-plugged": " {capacity}%",
             "format-empty": "",
             "format-full": "",
             "format-icons": [" ", " ", " ", " ", " "]
@@ -58,12 +58,12 @@
             "tooltip-format": "No connection!",
             "format-ethernet": "",
             "format-wifi": "",
-            "format-linked": " ",
+            "format-linked": "",
             "format-disconnected": " ",
         },
         "network#ethernet": {
             "interface": "enp*",
-            "format-ethernet": "",
+            "format-ethernet": "{ifname}",
             "format-wifi": "",
             "format-linked": "",
             "format-disconnected": "",
@@ -72,7 +72,7 @@
         "network#wifi": {
             "interface": "wl*",
             "format-ethernet": "",
-            "format-wifi": "  {essid} ({signalStrength}%)",
+            "format-wifi": "  {essid}({signalStrength}%) ",
             "format-linked": "",
             "format-disconnected": "",
             "tooltip-format": "{ifname}: {ipaddr}/{cidr}",

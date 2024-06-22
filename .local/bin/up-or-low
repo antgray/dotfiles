@@ -1,0 +1,16 @@
+#!/bin/bash
+
+read -p "Convert all filenames to uppercase or lowercase (u/l): " choice
+
+if [ "$choice" = "u" ]; then
+    for file in *; do
+        mv "$file" "$(echo $file | tr '[:lower:]' '[:upper:]')"
+    done
+elif [ "$choice" = "l" ]; then
+    for file in *; do
+        mv "$file" "$(echo $file | tr '[:upper:]' '[:lower:]')"
+    done
+else
+    echo "Invalid choice. Please enter 'u' for uppercase or 'l' for lowercase."
+fi
+

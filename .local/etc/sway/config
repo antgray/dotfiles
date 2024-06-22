@@ -131,7 +131,7 @@ for_window [app_id="yubico-authenticator"] {
 }
 
 for_window [app_id="firefox" title="^Picture-in-Picture$"] { 
-    $video 
+    $popup 
 }
 
 for_window [app_id="firefox" title="^Extension:.*"] { 
@@ -199,7 +199,7 @@ client.background       #F8F8F2
 bar swaybar_command waybar
 
 # exec
-exec_always "random-swaybg &"
+exec_always random-swaybg
 exec_always autotiling
 include /etc/sway/config.d/*
 
