@@ -13,9 +13,9 @@ Plug 'Yggdroot/indentLine'
 call plug#end()
 
 " turn off italic highlighting
-colorscheme dracula
 let g:dracula_bold = 0
 let g:dracula_italic = 0
+colorscheme dracula
 
 set encoding=utf-8
 set noswapfile
@@ -82,4 +82,3 @@ nnoremap gb :ls<CR>:b<Space>
 set mouse=a
 set ttymouse=sgr
 set balloonevalterm
-

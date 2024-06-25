@@ -44,6 +44,7 @@ export SYSTEMD_EDITOR=vim
 export VISUAL=vim
 export LC_COLLATE=C
 export LESS="-RXF --use-color -Dd+b\$Du+g"
+export TERM="xterm-256color"
 
 # XDG
 export XDG_CACHE_HOME=~/.local/var/cache
