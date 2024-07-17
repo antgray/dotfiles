@@ -59,7 +59,7 @@
             "format-ethernet": "",
             "format-wifi": "",
             "format-linked": "",
-            "format-disconnected": " ",
+            "format-disconnected": "",
         },
         "network#ethernet": {
             "interface": "enp*",
