@@ -1,0 +1,15 @@
+#!/bin/bash
+
+FILE=/home/ag/inventory
+while IFS=' ' read -r HOST IP; do
+  # Perform the ping command and check for a successful response
+  if ping -c 4 "$IP" &> /dev/null; then
+      exit 0
+  else
+      curl \
+      -H prio:urgent \
+      -H tags:warning \
+      -d "$HOST status is offline" \
+      http://10.2.0.1:80/power_off
+  fi
+done < "$FILE"
