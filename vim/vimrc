@@ -82,3 +82,34 @@ nnoremap gb :ls<CR>:b<Space>
 set mouse=a
 set ttymouse=sgr
 set balloonevalterm
+
+" python
+function! RunPython()
+    if &filetype == 'python'
+        execute '!python3 ' . expand('%:p')
+    else
+        echo "Not a Python file!"
+    endif
+endfunction
+
+function! AddPythonShebang()
+    " Get the current file's name
+    let l:file = expand("%:p")
+
+    " Check if the file has a .py extension
+    if l:file =~ '\.py$'
+        " Read the contents of the file into a variable
+        let l:contents = join(getline(1, '$'), "\n")
+
+        " Check if the shebang line is already there
+        if l:contents !~ '^#!\/usr\/bin\/env python'
+            " If not, prepend the shebang line to the file
+            call setline(1, ['#!/usr/bin/env python'] + getline(1, '$'))
+            " Optionally, you can also add an empty line after the shebang line
+            " call append(2, '')
+    endif
+endfunction
+
+
+nnoremap <F5> :call RunPython()<CR>
+
